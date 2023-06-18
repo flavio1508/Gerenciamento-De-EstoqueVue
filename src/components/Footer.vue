@@ -2,9 +2,9 @@
   <footer>
     <div class="container">
       <div class="social-links">
-        <a href="https://www.instagram.com/seu_instagram"><img src="instagram.png" alt="Instagram"></a>
-        <a href="https://www.linkedin.com/seu_linkedin"><img src="linkedin.png" alt="LinkedIn"></a>
-        <a href="mailto:seu_email@example.com"><img src="email.png" alt="E-mail"></a>
+        <a href="https://www.instagram.com/seu_instagram"><img src="../img/instagram.svg" alt="Instagram"></a>
+        <a href="https://www.linkedin.com/seu_linkedin"><img src="../img/linkedin.svg" alt="LinkedIn"></a>
+        <a href="mailto:seu_email@example.com"><img src="../img/github.svg" alt="E-mail"></a>
       </div>
     </div>
   </footer>

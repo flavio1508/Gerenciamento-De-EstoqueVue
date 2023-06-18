@@ -17,7 +17,7 @@ export default {
         <div class="container">
           <h1>Olá, sou o Flávio Augusto</h1>
           <p>Desenvolvedor Full Stack</p>
-          <a class="btn" href="curriculo.pdf" download>Baixar Currículo</a>
+          <a class="btn" href="Curriculo Desenvolvedor.pdf" download>Baixar Currículo</a>
         </div>
       </section>
     </main>
