@@ -20,7 +20,7 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-  }
+}
 
 .container {
   max-width: 1200px;

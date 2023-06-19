@@ -25,12 +25,22 @@ export default {
         <span></span>
         <span></span>
       </div>
-      <ul :class="{'active': isMenuOpen}">
-        <li><RouterLink to="/">Home</RouterLink></li>
-        <li><RouterLink to="/sobre">Sobre</RouterLink></li>
-        <li><RouterLink to="/habilidades">Habilidades</RouterLink></li>
-        <li><RouterLink to="/projetos">Projetos</RouterLink></li>
-        <li><RouterLink to="/contato">Contato</RouterLink></li>
+      <ul :class="{ 'active': isMenuOpen }">
+        <li>
+          <RouterLink to="/">Home</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/sobre">Sobre</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/habilidades">Habilidades</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/projetos">Projetos</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/contato">Contato</RouterLink>
+        </li>
       </ul>
     </nav>
   </header>
@@ -89,5 +99,4 @@ nav ul li a {
 /* Estilos para o conteúdo responsivo */
 @media (max-width: 768px) {
   /* ...código para o menu hamburger e outros estilos responsivos... */
-}
-</style>
+}</style>
