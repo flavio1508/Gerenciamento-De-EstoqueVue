@@ -111,7 +111,7 @@ export default {
   padding: 10px;
   /* margin-left: 5%; */
   margin: 15px;
-  background-color: #f1f1f1;
+  background-color: #201e1e;
   border-radius: 4px;
 }
 
@@ -124,5 +124,6 @@ export default {
 
 .card h3 {
   margin-top: 10px;
+  color: rgb(156, 65, 247);
 }
 </style>
