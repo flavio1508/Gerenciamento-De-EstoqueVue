@@ -114,6 +114,10 @@ export default {
   background-color: #201e1e;
   border-radius: 4px;
 }
+.card:hover {
+  background-color: #333; /* Defina a cor de destaque desejada */
+  color: #fff; /* Defina a cor do texto de destaque desejada */
+}
 
 .card img {
   width: 100px;
