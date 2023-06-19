@@ -11,7 +11,7 @@ export default {
 </script>
 <template>
   <div>
-    <Header />
+    <Header/>
     <main>
       <section class="hero">
         <div class="container">
@@ -21,7 +21,7 @@ export default {
         </div>
       </section>
     </main>
-    <Footer />
+    <Footer/>
   </div>
 </template>
 
