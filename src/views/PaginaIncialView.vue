@@ -1,12 +1,12 @@
 <script>
-import Header from '../components/Header.vue';
-import Footer from '../components/Footer.vue';
+import Header from "../components/Header.vue";
+import Footer from "../components/Footer.vue";
 
 export default {
   components: {
     Header,
-    Footer
-  }
+    Footer,
+  },
 };
 </script>
 <template>
@@ -15,9 +15,11 @@ export default {
     <main>
       <section class="hero">
         <div class="container">
-          <h1>Olá, sou o Flávio Augusto</h1>
-          <p>Desenvolvedor Full Stack</p>
-          <a class="btn" href="Curriculo Desenvolvedor.pdf" download>Baixar Currículo</a>
+          <h1 class="fade-in">Olá, sou o Flávio Augusto</h1>
+          <p class="fade-in">Desenvolvedor Full Stack</p>
+          <a class="btn fade-in" href="Curriculo Desenvolvedor.pdf" download
+            >Baixar Currículo</a
+          >
         </div>
       </section>
     </main>
@@ -26,6 +28,21 @@ export default {
 </template>
 
 <style>
+@keyframes fade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fade 0.5s ease-in-out forwards;
+}
 .btn {
   display: inline-block;
   background: #333;
