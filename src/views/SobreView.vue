@@ -12,9 +12,16 @@ export default {
 </script>
 <template>
     <div>
-        <Header />
-        
-        <Footer />
+        <Header/>
+        <main>
+            <div class="logo">
+                <img src="logo.png" alt="F">
+            </div>
+            <div>
+                <p>Eu me chamo Flávio, sou desenvolvedor</p>
+            </div>
+        </main>
+        <Footer/>
 
     </div>
 </template>
