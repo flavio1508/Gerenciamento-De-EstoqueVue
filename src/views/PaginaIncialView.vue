@@ -1,85 +1,100 @@
 <script>
-import Header from "../components/Header.vue";
-import Footer from "../components/Footer.vue";
+import { RouterLink } from "vue-router";
+import { useCookies } from "vue3-cookies";
 
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+import Cabecalho from '../components/Cabecalho.vue'
 export default {
-  components: {
-    Header,
-    Footer,
+   components: {
+    Cabecalho, // Registrando o componente Header
+  },
+  setup() {
+    const { cookies } = useCookies();
+    const nomeLogado = cookies.get("administrador_nome"); // Obtendo o nome do cookie
+
+    return { nomeLogado };
+  },
+  methods: {
+    irParaCadastroDigital(tipo) {
+      this.$router.push({ name: "cadastro-produto-digital", params: { tipo } });
+    },
+    irParaCadastroSimples(tipo) {
+      this.$router.push({ name: "cadastro-produto-simples", params: { tipo } });
+    },
+    irParaListagemDigital(tipo) {
+      this.$router.push({ name: "listagem-produto-digital", params: { tipo } });
+    },
+    irParaListagemSimples(tipo) {
+      this.$router.push({ name: "listagem-produto-simples", params: { tipo } });
+    },
   },
 };
 </script>
 <template>
-  <div>
-    <Header />
-    <main>
-      <section class="hero">
-        <div class="container">
-          <h1 class="fade-in">Olá, sou o Flávio Augusto</h1>
-          <p class="fade-in">Desenvolvedor Full Stack</p>
-          <a class="btn fade-in" href="Curriculo Desenvolvedor.pdf" download
-            >Baixar Currículo</a
-          >
+  <div class="container text-center">
+<div class="cabecalhos">
+    <Cabecalho/>
+</div>
+<h2>Olá, {{ nomeLogado }}</h2>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <div class="card card-blue" @click="irParaCadastroDigital">
+          <h2 class="card-title">Cadastrar Produto Digital</h2>
+          <!-- Conteúdo adicional do card -->
         </div>
-      </section>
-    </main>
-    <Footer />
+      </div>
+      <div class="col-md-6 mb-3">
+        <div class="card card-blue" @click="irParaCadastroSimples">
+          <h2 class="card-title">Cadastrar Produto Simples</h2>
+          <!-- Conteúdo adicional do card -->
+        </div>
+      </div>
+    </div>
+    <div class="row ">
+      <div class="col-md-6">
+        <div class="card card-blue" @click="irParaListagemDigital">
+          <h2 class="card-title">Listagem de Produtos Digitais</h2>
+          <!-- Conteúdo adicional do card -->
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card card-blue" @click="irParaListagemSimples">
+          <h2 class="card-title">Listagem de Produtos Simples</h2>
+          <!-- Conteúdo adicional do card -->
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
-<style>
-@keyframes fade {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-.fade-in {
-  opacity: 0;
-  animation: fade 0.5s ease-in-out forwards;
-}
-.btn {
-  display: inline-block;
-  background: #333;
-  color: #fff;
-  padding: 10px 20px;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 4px;
-  transition: background 0.3s;
-  margin-left: -32%;
-}
-
-.btn:hover {
-  background: #555;
-}
-
-/* Estilos para a seção hero */
-.hero {
-  text-align: center;
-  padding: 100px 0;
-  margin-left: -100%;
-}
-
-.hero h1 {
-  font-size: 40px;
+<style scoped>
+.card {
+  border: none;
+  padding: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
 
-.hero p {
-  font-size: 20px;
-  margin-bottom: 40px;
-  margin-left: -24%;
+.card-blue {
+  background-color: #007bff;
+  color: white;
 }
 
-.hero img {
-  width: 200px;
-  border-radius: 50%;
-  margin-bottom: 20px;
+.card-blue:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-blue:active {
+  transform: scale(0.98);
+}
+.cabecalhos{
+  padding: 20px;
+  
 }
 </style>
