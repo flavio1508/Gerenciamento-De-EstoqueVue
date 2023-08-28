@@ -13,6 +13,12 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 ## Infomação
 Foi feito o projeto em vue.js para mobile e a comunicação com a API Back-end foi através do axios
 
+## Telas
+-Login Administrador
+-Cadastro Administrador
+-Listagem produto Simples e Digital
+-Edição Produto Simples e Digital
+-Remoção Produto Simples e Dital
 ## Back-End
 https://github.com/flavio1508/Gerenciamento-De-Produtos.git
 ## Configuração do projeto
