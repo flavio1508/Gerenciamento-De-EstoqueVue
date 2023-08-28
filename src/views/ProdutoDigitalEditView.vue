@@ -1,8 +1,9 @@
 <script>
-import { useCookies } from "vue3-cookies";
-import ProdutoDigitalDataService from "../services/ProdutoDigitalDataService";
+import ProdutoDigitalDataService from "@/services/ProdutoDigitalDataService";
 import ProdutoDigitalRequest from "../models/ProdutoDigitalRequest";
+import ProdutoDigitalResponse from "../models/ProdutoDigitalResponse";
 import { RouterLink } from "vue-router";
+import { useCookies } from "vue3-cookies";
 import Cabecalho from "../components/Cabecalho.vue";
 
 export default {
@@ -10,7 +11,11 @@ export default {
 
   data() {
     return {
-      produto: {
+      produtoDigitalRequest: new ProdutoDigitalRequest(),
+      produtoDigitalResponse: new ProdutoDigitalResponse(),
+
+      produtoDigitalRequest: {
+        id: null,
         nome: "",
         descricao: "",
         valor: 0,
@@ -19,45 +24,52 @@ export default {
       },
     };
   },
+  created() {
+    this.carregarProduto();
+  },
   methods: {
-    async cadastrarProduto() {
+    async carregarProduto() {
       try {
-        const { cookies } = useCookies();
-        const idDoAdministrador = cookies.get("administrador_id"); 
+        const produtoId = this.$route.params.id;
 
-        const produtoRequest = new ProdutoDigitalRequest();
-        produtoRequest.idDoAdministrador = idDoAdministrador;
-        produtoRequest.nome = this.produto.nome;
-        produtoRequest.descricao = this.produto.descricao;
-        produtoRequest.valor = this.produto.valor;
-        produtoRequest.dataLimite = this.produto.dataLimite;
-        produtoRequest.urlDownload = this.produto.urlDownload;
-
-        const response = await ProdutoDigitalDataService.cadastrar(
-          produtoRequest
-        );
-
-        this.$router.push({ name: "pagina-inicial" });
+        console.log(produtoId);
+        this.produto = await ProdutoDigitalDataService.buscarPorId(produtoId);
+        console.log(this.produto);
       } catch (error) {
         console.error(error);
       }
     },
-    goToHomePage() {
-      this.$router.push({ path: "/pagina/inicial" }); 
+    salvar() {
+      if (this.produtoDigitalRequest.id) {
+        ProdutoDigitalDataService.alteraProdutoDigital(
+          this.produtoDigitalRequest.id,
+          this.produtoDigitalRequest
+        )
+          .then((resposta) => {
+            this.produtoDigitalResponse = resposta;
+            this.$router.push({ name: "listagem-produto-simples" });
+          })
+          .catch((erro) => {
+            console.log(erro);
+          });
+      }
     },
   },
 };
 </script>
+
+
 <template>
   <Cabecalho />
+
   <div class="cadastro-container">
     <div class="cadastro-card">
-      <h2>Cadastrar Produto Digital</h2>
-      <form @submit.prevent="cadastrarProduto">
+      <h2>Editar Produto Digital</h2>
+      <form>
         <div class="form-group">
           <label for="nome">Nome</label>
           <input
-            v-model="produto.nome"
+            v-model="produtoDigitalRequest.nome"
             type="text"
             id="nome"
             class="form-control"
@@ -67,7 +79,7 @@ export default {
         <div class="form-group">
           <label for="descricao">Descrição</label>
           <textarea
-            v-model="produto.descricao"
+            v-model="produtoDigitalRequest.descricao"
             id="descricao"
             class="form-control"
             required
@@ -76,7 +88,7 @@ export default {
         <div class="form-group">
           <label for="valor">Valor</label>
           <input
-            v-model="produto.valor"
+            v-model="produtoDigitalRequest.valor"
             type="number"
             step="0.01"
             id="valor"
@@ -87,7 +99,7 @@ export default {
         <div class="form-group">
           <label for="dataLimite">Data Limite</label>
           <input
-            v-model="produto.dataLimite"
+            v-model="produtoDigitalRequest.dataLimite"
             type="date"
             id="dataLimite"
             class="form-control"
@@ -97,20 +109,25 @@ export default {
         <div class="form-group">
           <label for="urlDownload">URL de Download</label>
           <input
-            v-model="produto.urlDownload"
+            v-model="produtoDigitalRequest.urlDownload"
             type="url"
             id="urlDownload"
             class="form-control"
             required
           />
         </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="btn btn-primary" @click.prevent="salvar">
+          Salvar
+        </button>
       </form>
     </div>
   </div>
   <footer class="footer">
-    <router-link to="/" class="footer-link" @click="goToHomePage"
-      >Voltar para a página inicial</router-link
+    <router-link
+      to="/listagem/produto/digital"
+      class="footer-link"
+      @click="goToHomePage"
+      >Voltar</router-link
     >
   </footer>
 </template>
@@ -163,4 +180,14 @@ export default {
   border-radius: 5px;
   cursor: pointer;
 }
+.footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.footer-link {
+  color: #007bff;
+  text-decoration: none;
+}
 </style>
+

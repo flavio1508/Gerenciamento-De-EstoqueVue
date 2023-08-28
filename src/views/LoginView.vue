@@ -2,46 +2,53 @@
 import { RouterLink } from "vue-router";
 import { useCookies } from "vue3-cookies";
 import AdministradorDataService from "../services/AdministradorDataService";
+import Cabecalho from "../components/Cabecalho.vue";
 
 export default {
+  components: { Cabecalho },
+
   setup() {
-  const { cookies } = useCookies();
-  return { cookies };
-},
-methods: {
-  async fazerLogin() {
-    try {
-      const loginInfo = {
-        email: this.email,
-        senha: this.senha
-      };
-
-      const response = await AdministradorDataService.login(loginInfo);
-
-      // Armazenar informações de login em cookies
-      this.cookies.set('administrador_id', response.id);
-      this.cookies.set('administrador_nome', response.nome);
-
-      // Redirecionar para a página de menu (ou qualquer outra)
-      this.$router.push({ name: "pagina-inicial" });
-    } catch (error) {
-      console.error(error);
-    }
+    const { cookies } = useCookies();
+    return { cookies };
   },
-  
+  methods: {
+    async fazerLogin() {
+      try {
+        const loginInfo = {
+          email: this.email,
+          senha: this.senha,
+        };
+
+        const response = await AdministradorDataService.login(loginInfo);
+
+        this.cookies.set("administrador_id", response.id);
+        this.cookies.set("administrador_nome", response.nome);
+
+        this.$router.push({ name: "pagina-inicial" });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
     cadastrar() {
-      // Redirecionar para a página de cadastro de administrador
       this.$router.push({ name: "cadastro-administrador" });
-    }
-},
+    },
+  },
 };
 </script>
 <template>
+  <Cabecalho />
+
   <div class="login-container">
     <div class="login-card">
       <h2>Login</h2>
       <input v-model="email" placeholder="Email" class="input-field" />
-      <input v-model="senha" placeholder="Senha" type="password" class="input-field" />
+      <input
+        v-model="senha"
+        placeholder="Senha"
+        type="password"
+        class="input-field"
+      />
       <button @click="fazerLogin" class="login-button">Entrar</button>
       <button @click="cadastrar" class="criar-button">Criar uma conta</button>
     </div>
@@ -50,7 +57,7 @@ methods: {
 
 
 <style>
-.criar-button{
+.criar-button {
   background-color: white;
   color: #007bff;
   padding: 10px;

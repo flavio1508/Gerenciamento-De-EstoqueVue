@@ -1,6 +1,6 @@
 # portifolio
 
-This template should help get you started developing with Vue 3 in Vite.
+
 
 ## Recommended IDE Setup
 
@@ -10,20 +10,28 @@ This template should help get you started developing with Vue 3 in Vite.
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Project Setup
+## Configuração do projeto
 
 ```sh
 npm install
 ```
+```sh
+npm  install vue3-cookies
+```
+```sh
+npm  install bootstrap
 
-### Compile and Hot-Reload for Development
+```
+```sh
+npm install --save axios vue-axios
 
+```
+## Compilar e recarregar para desenvolvimento
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
-
+### Compilar e reduzir para produção
 ```sh
 npm run build
 ```

@@ -1,53 +1,85 @@
+<script>
+import AdministradorDataService from "../services/AdministradorDataService";
+import Cabecalho from "../components/Cabecalho.vue";
+
+export default {
+  components: { Cabecalho },
+
+  data() {
+    return {
+      administrador: {
+        nome: "",
+        email: "",
+        senha: "",
+      },
+    };
+  },
+  methods: {
+    async cadastrarAdministrador() {
+      try {
+        const response = await AdministradorDataService.cadastrar(
+          this.administrador
+        );
+
+        this.$router.push({ name: "login" });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    goToHomePage() {
+      this.$router.push({ path: "/" }); 
+    },
+  },
+};
+</script>
 <template>
+  <Cabecalho />
+
   <div class="cadastro-container">
     <div class="cadastro-card">
       <h2>Cadastrar Administrador</h2>
       <form @submit.prevent="cadastrarAdministrador">
         <div class="form-group">
           <label for="nome">Nome</label>
-          <input v-model="administrador.nome" type="text" id="nome" class="form-control" required />
+          <input
+            v-model="administrador.nome"
+            type="text"
+            id="nome"
+            class="form-control"
+            required
+          />
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input v-model="administrador.email" type="email" id="email" class="form-control" required />
+          <input
+            v-model="administrador.email"
+            type="email"
+            id="email"
+            class="form-control"
+            required
+          />
         </div>
         <div class="form-group">
           <label for="senha">Senha</label>
-          <input v-model="administrador.senha" type="password" id="senha" class="form-control" required />
+          <input
+            v-model="administrador.senha"
+            type="password"
+            id="senha"
+            class="form-control"
+            required
+          />
         </div>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
       </form>
     </div>
   </div>
+  <footer class="footer">
+    <router-link to="/" class="footer-link" @click="goToHomePage"
+      >Voltar para a login</router-link
+    >
+  </footer>
 </template>
 
-<script>
-import AdministradorDataService from "../services/AdministradorDataService";
-
-export default {
-  data() {
-    return {
-      administrador: {
-        nome: "",
-        email: "",
-        senha: ""
-      }
-    };
-  },
-  methods: {
-    async cadastrarAdministrador() {
-      try {
-        const response = await AdministradorDataService.cadastrar(this.administrador);
-
-        // Redirecionar para a página de login ou qualquer outra
-        this.$router.push({ name: "login" });
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  }
-};
-</script>
 
 <style scoped>
 .cadastro-container {
@@ -81,5 +113,14 @@ export default {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+.footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.footer-link {
+  color: #007bff;
+  text-decoration: none;
 }
 </style>

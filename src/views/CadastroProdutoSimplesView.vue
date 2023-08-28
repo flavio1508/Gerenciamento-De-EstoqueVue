@@ -3,8 +3,11 @@ import ProdutoSimplesDataService from "../services/ProdutoSimplesDataService";
 import ProdutoSimplesRequest from "../models/ProdutoSimplesRequest";
 import { useCookies } from "vue3-cookies";
 import { RouterLink } from "vue-router";
+import Cabecalho from "../components/Cabecalho.vue";
 
 export default {
+  components: { Cabecalho },
+
   data() {
     return {
       produto: {
@@ -34,16 +37,20 @@ export default {
           produtoRequest
         );
 
-        // Redirecionar para a página de menu (ou qualquer outra)
         this.$router.push({ name: "pagina-inicial" });
       } catch (error) {
         console.error(error);
       }
     },
+    goToHomePage() {
+      this.$router.push({ path: "/pagina/inicial" }); 
+    },
   },
 };
 </script>
 <template>
+  <Cabecalho />
+
   <div class="cadastro-container">
     <div class="cadastro-card">
       <h2>Cadastrar Produto Simples</h2>
@@ -102,6 +109,11 @@ export default {
       </form>
     </div>
   </div>
+    <footer class="footer">
+    <router-link to="/" class="footer-link" @click="goToHomePage"
+      >Voltar para a página inicial</router-link
+    >
+  </footer>
 </template>
 
 
@@ -114,7 +126,7 @@ export default {
 }
 
 .cadastro-card {
-  background-color: #006400; /* Cor verde escura */
+  background-color: #007bff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -142,5 +154,14 @@ export default {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+.footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.footer-link {
+  color: #007bff;
+  text-decoration: none;
 }
 </style>

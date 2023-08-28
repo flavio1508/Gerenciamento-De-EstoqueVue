@@ -2,16 +2,16 @@
 import { RouterLink } from "vue-router";
 import { useCookies } from "vue3-cookies";
 
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
-import Cabecalho from '../components/Cabecalho.vue'
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.js";
+import Cabecalho from "../components/Cabecalho.vue";
 export default {
-   components: {
-    Cabecalho, // Registrando o componente Header
+  components: {
+    Cabecalho, 
   },
   setup() {
     const { cookies } = useCookies();
-    const nomeLogado = cookies.get("administrador_nome"); // Obtendo o nome do cookie
+    const nomeLogado = cookies.get("administrador_nome"); 
 
     return { nomeLogado };
   },
@@ -28,44 +28,46 @@ export default {
     irParaListagemSimples(tipo) {
       this.$router.push({ name: "listagem-produto-simples", params: { tipo } });
     },
+    goToHomePage() {
+      this.$router.push({ path: "/" }); 
+    },
   },
 };
 </script>
 <template>
-  <div class="container text-center">
-<!-- <div class="cabecalhos">
     <Cabecalho/>
-</div> -->
-<h2>Olá, {{ nomeLogado }}</h2>
+  <div class="container text-center">
+    <h2>Olá, {{ nomeLogado }}</h2>
     <div class="row">
       <div class="col-md-6 mb-3">
         <div class="card card-blue" @click="irParaCadastroDigital">
           <h2 class="card-title">Cadastrar Produto Digital</h2>
-          <!-- Conteúdo adicional do card -->
         </div>
       </div>
       <div class="col-md-6 mb-3">
         <div class="card card-blue" @click="irParaCadastroSimples">
           <h2 class="card-title">Cadastrar Produto Simples</h2>
-          <!-- Conteúdo adicional do card -->
         </div>
       </div>
     </div>
-    <div class="row ">
+    <div class="row">
       <div class="col-md-6">
         <div class="card card-blue" @click="irParaListagemDigital">
           <h2 class="card-title">Listagem de Produtos Digitais</h2>
-          <!-- Conteúdo adicional do card -->
         </div>
       </div>
       <div class="col-md-6">
         <div class="card card-blue" @click="irParaListagemSimples">
           <h2 class="card-title">Listagem de Produtos Simples</h2>
-          <!-- Conteúdo adicional do card -->
         </div>
       </div>
     </div>
   </div>
+  <footer class="footer">
+    <router-link to="/" class="footer-link" @click="goToHomePage"
+      >Voltar para a login</router-link
+    >
+  </footer>
 </template>
 
 
@@ -93,8 +95,16 @@ export default {
 .card-blue:active {
   transform: scale(0.98);
 }
-.cabecalhos{
+.cabecalhos {
   padding: 20px;
-  
+}
+.footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.footer-link {
+  color: #007bff;
+  text-decoration: none;
 }
 </style>
