@@ -12,6 +12,9 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Infomação
 Foi feito o projeto em vue.js para mobile e a comunicação com a API Back-end foi através do axios
+
+## Back-End
+https://github.com/flavio1508/PortifolioVue.git
 ## Configuração do projeto
 
 ```sh
