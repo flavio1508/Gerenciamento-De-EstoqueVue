@@ -1,18 +1,16 @@
 <script>
-import ProdutoDigitalDataService from "@/services/ProdutoDigitalDataService";
-import ProdutoDigitalRequest from "../models/ProdutoDigitalRequest";
-import ProdutoDigitalResponse from "../models/ProdutoDigitalResponse";
-import { RouterLink } from "vue-router";
-import { useCookies } from "vue3-cookies";
+import ProdutoSimplesDataService from "@/services/ProdutoSimplesDataService";
+import ProdutoSimplesRequest from "../models/ProdutoSimplesRequest";
+import ProdutoSimplesResponse from "../models/ProdutoSimplesResponse";
 import Cabecalho from "../components/Cabecalho.vue";
 
 export default {
-  components: { Cabecalho },
+    components: { Cabecalho },
 
   data() {
     return {
-      produtoDigitalRequest: new ProdutoDigitalRequest(),
-      produtoDigitalResponse: new ProdutoDigitalResponse(),
+      produtoSimplesRequest: new ProdutoSimplesRequest(),
+      produtoSimplesResponse: new ProdutoSimplesResponse(),
     };
   },
   created() {
@@ -24,44 +22,42 @@ export default {
         const produtoId = this.$route.params.id;
 
         console.log(produtoId);
-        this.produtoDigitalRequest = await ProdutoDigitalDataService.buscarPorId(produtoId);
-        console.log(this.produtoDigitalRequest);
+        this.produtoSimplesRequest = await ProdutoSimplesDataService.buscarPorId(produtoId);
+        console.log(this.produtoSimplesRequest);
       } catch (error) {
         console.error(error);
       }
     },
     salvar() {
-      if (this.produtoDigitalRequest.id) {
-        ProdutoDigitalDataService.alteraProdutoDigital(
-          this.produtoDigitalRequest.id,
-          this.produtoDigitalRequest
+      if (this.produtoSimplesRequest.id) {
+        ProdutoSimplesDataService.alteraProdutoSimples(
+          this.produtoSimplesRequest.id,
+          this.produtoSimplesRequest
         )
           .then((resposta) => {
-            this.produtoDigitalResponse = resposta;
-            this.$router.push({ name: "listagem-produto-digital" });
+            this.produtoSimplesResponse = resposta;
+            this.$router.push({ name: "listagem-produto-simples" });
           })
           .catch((erro) => {
             console.log(erro);
           });
       }
     },
-    
   },
 };
 </script>
 
-
 <template>
-  <Cabecalho />
+    <Cabecalho />
 
   <div class="cadastro-container">
     <div class="cadastro-card">
-      <h2>Editar Produto Digital</h2>
-      <form>
+      <h2>Editar Produto Simples</h2>
+      <form @submit.prevent="salvar">
         <div class="form-group">
           <label for="nome">Nome</label>
           <input
-            v-model="produtoDigitalRequest.nome"
+            v-model="produtoSimplesRequest.nome"
             type="text"
             id="nome"
             class="form-control"
@@ -71,7 +67,7 @@ export default {
         <div class="form-group">
           <label for="descricao">Descrição</label>
           <textarea
-            v-model="produtoDigitalRequest.descricao"
+            v-model="produtoSimplesRequest.descricao"
             id="descricao"
             class="form-control"
             required
@@ -80,7 +76,7 @@ export default {
         <div class="form-group">
           <label for="valor">Valor</label>
           <input
-            v-model="produtoDigitalRequest.valor"
+            v-model="produtoSimplesRequest.valor"
             type="number"
             step="0.01"
             id="valor"
@@ -88,35 +84,14 @@ export default {
             required
           />
         </div>
-        <div class="form-group">
-          <label for="dataLimite">Data Limite</label>
-          <input
-            v-model="produtoDigitalRequest.dataLimite"
-            type="date"
-            id="dataLimite"
-            class="form-control"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="urlDownload">URL de Download</label>
-          <input
-            v-model="produtoDigitalRequest.urlDownload"
-            type="url"
-            id="urlDownload"
-            class="form-control"
-            required
-          />
-        </div>
-        <button type="submit" class="btn btn-primary" @click.prevent="salvar">
-          Salvar
-        </button>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
       </form>
     </div>
   </div>
-  <footer class="footer">
+    <footer class="footer">
     <router-link
-      to="/listagem/produto/digital"
+      to="/listagem/produto/simples"
       class="footer-link"
       @click="goToHomePage"
       >Voltar</router-link
@@ -126,15 +101,6 @@ export default {
 
 
 <style scoped>
-.footer {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.footer-link {
-  color: #007bff;
-  text-decoration: none;
-}
 .cadastro-container {
   display: flex;
   justify-content: center;

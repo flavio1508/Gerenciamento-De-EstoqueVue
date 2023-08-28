@@ -17,7 +17,7 @@ class ProdutoSimplesDataService {
   }
 
   async alteraProdutoSimples(id, produtoSimples) {
-    let resposta = await http.put(`/produtosSimples/${id}`, produtoSimples);
+    let resposta = await http.put(`/produtosSimples/`+ id, produtoSimples);
     return resposta.data;
   }
 

@@ -55,8 +55,8 @@ export default {
           produto.urlDownload
         }}</a>
       </p>
-      <button @click="editarProduto(produto.id)">Editar</button>
-      <button @click="excluirProduto(produto.id)">Excluir</button>
+      <button class="editar" @click="editarProduto(produto.id)">Editar</button>
+      <button class="excluir" @click="excluirProduto(produto.id)">Excluir</button>
     </div>
   </div>
   <footer class="footer">
@@ -68,8 +68,14 @@ export default {
 
 
 <style>
+.editar{
+  background-color: green;
+}
+.excluir{
+  background-color: red;
+}
 .produto-card {
-  background-color: #007bff; /* Altere a cor aqui para azul (#007bff) */
+  background-color: #007bff; 
   border: 1px solid #ccc;
   padding: 10px;
   margin: 10px 0;
@@ -88,5 +94,4 @@ export default {
   text-decoration: none;
 }
 
-/* Outros estilos para a lista de produtos */
 </style>

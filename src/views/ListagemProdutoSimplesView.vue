@@ -20,7 +20,7 @@ export default {
       }
     },
     editarProduto(id) {
-      this.$router.push({ name: "editar-produto-simples", params: { id } });
+      this.$router.push({ name: "produto-simples-edit", params: { id } });
     },
     async excluirProduto(id) {
       try {
@@ -53,8 +53,8 @@ export default {
       <p>Valor: {{ produto.valor }}</p>
       <p>Data Limite: {{ produto.dataLimite }}</p>
       <p>Quantidade de Produto: {{ produto.quantidadeDeProduto }}</p>
-      <button @click="editarProduto(produto.id)">Editar</button>
-      <button @click="excluirProduto(produto.id)">Excluir</button>
+      <button class="editar" @click="editarProduto(produto.id)">Editar</button>
+      <button class="excluir" @click="excluirProduto(produto.id)">Excluir</button>
     </div>
   </div>
   <footer class="footer">
@@ -66,6 +66,12 @@ export default {
 
 
 <style>
+.editar{
+  background-color: green;
+}
+.excluir{
+  background-color: red;
+}
 .produto-card {
   background-color: #f4f4f4;
   border: 1px solid #ccc;

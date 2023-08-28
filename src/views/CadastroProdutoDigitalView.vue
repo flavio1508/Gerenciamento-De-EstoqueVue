@@ -157,7 +157,7 @@ export default {
 
 .btn-primary {
   background-color: white;
-  color: #006400;
+  color: blue;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;

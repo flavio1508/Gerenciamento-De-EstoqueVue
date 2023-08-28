@@ -6,6 +6,7 @@ import ListagemProdutoSimplesView from '../views/ListagemProdutoSimplesView.vue'
 import ListagemProdutoDigitalView from '../views/ListagemProdutoDigitalView.vue';
 import CadastroAdministradorView from '../views/CadastroAdministradorView.vue';
 import ProdutoDigitalEditView from '../views/ProdutoDigitalEditView.vue';
+import ProdutoSimplesEditView from '../views/ProdutoSimpleEditView.vue'
 import LoginView from '../views/LoginView.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -50,6 +51,11 @@ const router = createRouter({
     path:"/produto/digital/edit/:id",
     name:'produto-digital-edit',
     component: ProdutoDigitalEditView
+   },
+   {
+    path:"/produto/simples/edit/:id",
+    name:'produto-simples-edit',
+    component: ProdutoSimplesEditView
    }
   
   
