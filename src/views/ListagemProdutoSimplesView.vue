@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Lista de Produtos Simples Cadastrados</h2>
+    <h2 class="titulo">Lista de Produtos Cadastrados</h2>
     <div class="produto-card" v-for="produto in produtosSimples" :key="produto.id">
       <h3>{{ produto.nome }}</h3>
       <p>Descrição: {{ produto.descricao }}</p>
@@ -59,6 +59,9 @@ export default {
   padding: 10px;
   margin: 10px 0;
   border-radius: 5px;
+}
+.titulo{
+    text-align: center;
 }
 
 /* Outros estilos para a lista de produtos simples */

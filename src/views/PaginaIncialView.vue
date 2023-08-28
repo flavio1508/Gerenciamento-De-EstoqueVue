@@ -33,9 +33,9 @@ export default {
 </script>
 <template>
   <div class="container text-center">
-<div class="cabecalhos">
+<!-- <div class="cabecalhos">
     <Cabecalho/>
-</div>
+</div> -->
 <h2>Olá, {{ nomeLogado }}</h2>
     <div class="row">
       <div class="col-md-6 mb-3">

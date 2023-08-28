@@ -40,6 +40,10 @@ export default {
         console.error(error);
       }
     },
+    goToHomePage() {
+      // Navigate to the homepage
+      this.$router.push({ path: "/" }); // Adjust the path as needed
+    }
   },
 };
 </script>
@@ -72,10 +76,22 @@ export default {
       </form>
     </div>
   </div>
+   <footer class="footer">
+    <router-link to="/" class="footer-link" @click="goToHomePage">Voltar para a página inicial</router-link>
+  </footer>
 </template>
 
 
 <style scoped>
+.footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.footer-link {
+  color: #007bff;
+  text-decoration: none;
+}
 .cadastro-container {
   display: flex;
   justify-content: center;
