@@ -15,7 +15,7 @@ Foi feito o projeto em vue.js para mobile e a comunicação com a API Back-end f
 
 ## Telas
 -Login Administrador
--Cadastro Administrador
+-Cadastro Administrador e produto simples e digital
 -Listagem produto Simples e Digital
 -Edição Produto Simples e Digital
 -Remoção Produto Simples e Dital
